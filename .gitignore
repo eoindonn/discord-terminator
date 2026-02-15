@@ -9,8 +9,11 @@ __pycache__/
 .Python
 env/
 venv/
+.venv/
 ENV/
 build/
+dist/
+*.spec
 develop-eggs/
 dist/
 downloads/
@@ -26,9 +29,21 @@ wheels/
 .installed.cfg
 *.egg
 
+# Build Artifacts & AppImage
+AppDir/
+appimagetool
+*.AppImage
+
+# Node/Web (Frontend dist is bundled in executable, but usually ignored in git if it's a build output)
+# web/frontend/dist/
+
 # Logs
 logs/
 *.log
+
+# OS
+.DS_Store
+Thumbs.db
 
 # IDE
 .vscode/

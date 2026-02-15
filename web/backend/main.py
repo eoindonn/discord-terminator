@@ -9,11 +9,17 @@ from typing import Optional, Dict, List
 from fastapi.staticfiles import StaticFiles
 from .engine import MigrationEngine
 import os
+import sys
 
 app = FastAPI(title="Stoat Migrate API")
 
 # Serve frontend static files
-frontend_path = os.path.join(os.path.dirname(__file__), "../frontend/dist")
+IS_BUNDLED = getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS')
+if IS_BUNDLED:
+    frontend_path = os.path.join(sys._MEIPASS, "web/frontend/dist")
+else:
+    frontend_path = os.path.join(os.path.dirname(__file__), "../frontend/dist")
+
 if os.path.exists(frontend_path):
     app.mount("/", StaticFiles(directory=frontend_path, html=True), name="static")
 
