@@ -37,6 +37,17 @@ cat <<EOF > $APP_DIR/AppRun
 #!/bin/bash
 HERE="\$(dirname "\$(readlink -f "\${0}")")"
 export PATH="\$HERE/usr/bin:\$PATH"
+
+# Enable Wayland support for Qt if the session is Wayland
+if [ "\$XDG_SESSION_TYPE" == "wayland" ]; then
+    export QT_QPA_PLATFORM=wayland
+else
+    export QT_QPA_PLATFORM=xcb
+fi
+
+# Fix for some distros where Qt looks for plugins in the wrong place
+export QT_PLUGIN_PATH="\$HERE/usr/bin"
+
 exec discord-terminator "\$@"
 EOF
 chmod +x $APP_DIR/AppRun

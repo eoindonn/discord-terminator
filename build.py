@@ -27,8 +27,9 @@ def run_build():
         "--windowed",
         # Exclude GI to avoid build errors on some Linux distros (using QT instead)
         "--exclude-module=gi",
-        # Ensure webview requirements are collected
+        # Ensure webview requirements and Qt plugins are collected
         "--collect-all=webview",
+        "--collect-all=PyQt5",
     ]
     
     # Add icon if it exists
