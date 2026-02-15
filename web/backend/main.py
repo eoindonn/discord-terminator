@@ -6,9 +6,16 @@ import asyncio
 import uuid
 import time
 from typing import Optional, Dict, List
+from fastapi.staticfiles import StaticFiles
 from .engine import MigrationEngine
+import os
 
 app = FastAPI(title="Stoat Migrate API")
+
+# Serve frontend static files
+frontend_path = os.path.join(os.path.dirname(__file__), "../frontend/dist")
+if os.path.exists(frontend_path):
+    app.mount("/", StaticFiles(directory=frontend_path, html=True), name="static")
 
 # Enable CORS for frontend
 app.add_middleware(
