@@ -190,7 +190,7 @@ export class MigrationEngine {
         await this.log(`Starting cloning task for server ${sourceId} to ${targetId}`);
 
         const client = new Client({
-            intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
+            intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
         });
 
         return new Promise((resolve, reject) => {
