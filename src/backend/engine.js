@@ -194,7 +194,7 @@ export class MigrationEngine {
         });
 
         return new Promise((resolve, reject) => {
-            client.once('clientReady', async () => {
+            client.once('ready', async () => {
                 try {
                     const guild = client.guilds.cache.get(sourceId.toString());
                     if (!guild) {
